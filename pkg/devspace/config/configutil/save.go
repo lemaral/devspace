@@ -10,6 +10,7 @@ import (
 	"unsafe"
 
 	"github.com/covexo/devspace/pkg/util/fsutil"
+	"github.com/covexo/devspace/pkg/util/log"
 	yaml "gopkg.in/yaml.v2"
 )
 
@@ -158,6 +159,7 @@ func getConfigAndOverwriteMaps(config interface{}, configRaw interface{}, overwr
 		for _, keyRef := range objectValueRef.MapKeys() {
 			key := keyRef.Interface()
 			val := getMapValue(objectValue, key, genericPointerType)
+			log.Info(key)
 			yamlKey := getYamlKey(key.(string))
 			valType := reflect.TypeOf(val)
 			overwriteVal := getMapValue(overwriteValue, key, valType)

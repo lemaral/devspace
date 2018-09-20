@@ -5,6 +5,7 @@ import (
 	"unsafe"
 
 	"github.com/covexo/devspace/pkg/util/log"
+	"github.com/juju/errors"
 
 	"github.com/covexo/devspace/pkg/devspace/config/v1"
 )
@@ -51,7 +52,7 @@ func GetConfig(reload bool) *v1.Config {
 		err := loadConfig(configRaw, configPath)
 
 		if err != nil {
-			log.Fatal("Unable to load config.")
+			log.Fatal("Unable to load config. Reason: " + errors.Details(err))
 		}
 		GetOverwriteConfig()
 
