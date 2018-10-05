@@ -1,3 +1,3 @@
-description: A Kubernetes-Native Application
-name: devspace-docs
+name: my-app
 version: v0.0.1
+description: A Kubernetes-Native Application

@@ -1,6 +1,6 @@
-FROM node:8.11
+FROM node:8.11.4
 
-RUN mkdir -p /app/website
+RUN mkdir /app
 WORKDIR /app/website
 
 COPY website/package.json .

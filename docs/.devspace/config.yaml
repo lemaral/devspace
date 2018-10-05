@@ -1,20 +1,43 @@
+cluster:
+  useKubeConfig: true
+devSpace:
+  chartHash: 8ea985f2554449b844b276a8e607429e16081b7d79b50045f2ac1edf8f198417
+  portForwarding:
+  - labelSelector:
+      release: devspace-docs
+    portMappings:
+    - localPort: 3000
+      remotePort: 3000
+    resourceType: pod
+  release:
+    name: devspace-docs
+    namespace: dev-gentele
+  sync:
+  - containerPath: /app
+    labelSelector:
+      release: devspace-docs
+    localSubPath: ./
+    resourceType: pod
+    uploadExcludePaths:
+    - Dockerfile
+    - .devspace/
+    - chart/
+    - node_modules/
+images:
+  default:
+    build:
+      engine:
+        docker:
+          enabled: true
+      latestTimestamp: "2018-10-05T20:36:20.9073154+02:00"
+    name: gentele/devspacedocs
+    registry: default
+    tag: 44aGFUs
+registries:
+  default:
+    url: hub.docker.com
+services:
+  tiller:
+    release:
+      namespace: dev-gentele
 version: v1
-portForwarding:
-- resourceType: pod
-  labelSelector:
-    release: devspace-docs
-  portMappings:
-  - localPort: 3000
-    remotePort: 3000
-  - localPort: 35729
-    remotePort: 35729
-syncPath:
-- resourceType: pod
-  labelSelector:
-    release: devspace-docs
-  localSubPath: ./
-  containerPath: /app
-  excludeRegex: []
-registry:
-  secrets:
-    htpasswd: ""
